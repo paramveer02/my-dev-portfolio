@@ -24,8 +24,8 @@ export default function IntroScreen({ onComplete }) {
           }, 1500);
         }
       },
-      showWelcome ? 2000 : currentGreeting === greetings.length - 1 ? 900 : 400
-    );
+      showWelcome ? 2000 : currentGreeting === greetings.length - 1 ? 900 : 300
+    ); // each greeting for 300ms, last greet for 99ms & welcome page for 2000ms
 
     return () => clearTimeout(timer);
   }, [currentGreeting, greetings.length, onComplete, showWelcome]);
@@ -66,6 +66,23 @@ export default function IntroScreen({ onComplete }) {
               <h1 className="invisible text-3xl md:text-5xl font-light tracking-wide">
                 {greetings[0]}
               </h1>
+            </div>
+
+            {/* Enhanced Progress Indicator */}
+            <div className="mt-2 flex justify-center space-x-3">
+              {[...greetings, "welcome"].map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all-duration-500 ease-out ${
+                    index < currentGreeting ||
+                    (index === greetings.length && showWelcome)
+                      ? "bg-blue-400 w-8 shadow-lg shadow-blue-400/500" // previous dots
+                      : index === currentGreeting && !showWelcome
+                      ? "bg-blue-400 w-12 shadow-lg shadow-blue-400/500 animate-pulse" // current dot
+                      : "bg-gray-600 w-2" // future dots
+                  }`}
+                />
+              ))}
             </div>
           </>
         ) : (
