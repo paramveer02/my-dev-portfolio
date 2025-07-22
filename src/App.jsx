@@ -6,7 +6,11 @@ function App() {
 
   const handleIntroComplete = () => setShowIntro(false);
 
-  return <IntroScreen onComplete={handleIntroComplete} />;
+  return (
+    <>
+      <IntroScreen onComplete={handleIntroComplete} />
+    </>
+  );
 }
 
 export default App;
