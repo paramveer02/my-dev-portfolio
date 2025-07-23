@@ -1,5 +1,16 @@
+import { useState } from "react";
+import IntroScreen from "./components/IntroScreen";
+
 function App() {
-  return <h1 className="bg-amber-400">Paramveer Marwah</h1>;
+  const [showIntro, setShowIntro] = useState(true);
+
+  const handleIntroComplete = () => setShowIntro(false);
+
+  return (
+    <>
+      <IntroScreen onComplete={handleIntroComplete} />
+    </>
+  );
 }
 
 export default App;
