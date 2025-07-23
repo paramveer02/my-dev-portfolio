@@ -7,7 +7,7 @@ export default function IntroScreen({ onComplete }) {
   const [showWelcome, setShowWelcome] = useState(false);
   const [startTransition, setStartTransition] = useState(false);
 
-  const greetings = ["Namaste", "सअगत हे", "Bonjour", "Hallo."];
+  const greetings = ["• Namaste", "• सअगत हे", "• Bonjour", "• Hallo"];
 
   useEffect(() => {
     const timer = setTimeout(
@@ -97,6 +97,16 @@ export default function IntroScreen({ onComplete }) {
           </div>
         )}
       </div>
+      {/* TODO: Skip Button */}
+      <button
+        onClick={() => {
+          setStartTransition(true);
+          setTimeout(onComplete, 1000);
+        }}
+        className="absolute bottom-8 right-8 text-gray-400 hover:text-white transition-all duration-300 text-sm opacity-60 hover:opacity-100 hover:transform hover:translate-x-1"
+      >
+        Skip →
+      </button>
     </div>
   );
 }
