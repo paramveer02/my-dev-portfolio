@@ -4,7 +4,9 @@ export default function Navbar({ activeSection, scrollToSection }) {
   return (
     <nav className="fixed top-0 z-50 w-full">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <div className="text-sm text-gray-300">Portfolio by Paramveer</div>
+        <div className="text-sm text-gray-300 hover:text-white">
+          Portfolio by Paramveer
+        </div>
         <div className="flex items-center space-x-12 text-sm font-medium">
           <Button
             onClick={() => scrollToSection("work")}
