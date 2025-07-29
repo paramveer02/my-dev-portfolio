@@ -45,7 +45,7 @@ export default function About() {
 
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-72 h-72 rounded-full overflow-hidden border border-gray-700">
+              <div className="w-72 h-72 rounded-full overflow-hidden ">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="  dark:border-slate-700 shadow-xl overflow-hidden transition duration-500"
