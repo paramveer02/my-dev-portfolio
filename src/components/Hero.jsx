@@ -1,5 +1,5 @@
-import Button from "./Button";
 import { ArrowDown } from "lucide-react";
+import Button from "./ui/Button";
 
 export default function Hero({ isVisible, scrollY, scrollToSection }) {
   return (
