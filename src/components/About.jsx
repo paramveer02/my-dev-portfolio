@@ -1,10 +1,11 @@
 import { Code } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
     <section
       id="about"
-      className="relative py-32 px-4 bg-black/80 backdrop-blur-sm pt-24"
+      className="relative py-32 px-4 w-full h-full bg-gradient-to-br from-gray-700 via-black to-gray-700 pt-24"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid gap-16 lg:grid-cols-2 items-center">
@@ -44,12 +45,17 @@ export default function About() {
 
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-80 h-80 rounded-full overflow-hidden border border-gray-700">
-                <img
-                  src="me.jpg"
-                  alt="Paramveer MARWAH"
-                  className="object-cover w-full h-full"
-                />
+              <div className="w-72 h-72 rounded-full overflow-hidden border border-gray-700">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="  dark:border-slate-700 shadow-xl overflow-hidden transition duration-500"
+                >
+                  <img
+                    src="profile.jpg"
+                    alt="Paramveer portrait"
+                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover object-[18%_35%] grayscale hover:grayscale-0 transition duration-500 transform hover:scale-110 shadow-lg"
+                  />
+                </motion.div>
               </div>
               <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
                 <Code className="w-8 h-8 text-white" />
