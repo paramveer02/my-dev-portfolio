@@ -8,10 +8,6 @@ export default function Hero({ isVisible, scrollY, scrollToSection }) {
         id="hero"
         className="relative min-h-screen flex items-center justify-center px-4 "
       >
-        <div className="absolute top-8 right-8 text-right text-sm text-gray-400 z-10">
-          <div>Shots made by me ©</div>
-        </div>
-
         <div
           className={`text-center space-y-8 transform transition-all duration-2000 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
