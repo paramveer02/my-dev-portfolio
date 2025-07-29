@@ -39,7 +39,7 @@ export default function IntroScreen({ onComplete }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-all duration-1500 ease-out ${
+      className={`fixed inset-0 z-[100] bg-gradient-to-br from-gray-700 via-black to-gray-700 pt-24 flex flex-col items-center justify-center transition-all duration-1500 ease-out ${
         isVisible && !startTransition ? "opacity-100" : "opacity-0"
       } ${startTransition ? "transform-3d-transition" : ""}`}
       style={{
@@ -94,7 +94,7 @@ export default function IntroScreen({ onComplete }) {
           </>
         ) : (
           <div className="animate-welcome-3d-entrance">
-            <h1 className="text-8xl md:text-8xl font-light text-white mb-8 tracking-wide">
+            <h1 className="text-6xl md:text-6xl font-light text-white mb-8 tracking-wide">
               Welcome to my Portfolio
             </h1>
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto animate-pulse-glow"></div>

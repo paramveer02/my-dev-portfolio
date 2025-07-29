@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import IntroScreen from "./components/IntroScreen";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import About from "./components/About";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -41,9 +47,17 @@ function App() {
   }, [showIntro]);
 
   const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    console.log(sectionId);
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    gsap.to(window, {
+      duration: 0.1, // scroll seconds
+      scrollTo: {
+        y: element,
+        offsetY: 80,
+      },
+      ease: "power2.inOut",
     });
   };
 
@@ -61,11 +75,25 @@ function App() {
           : "opacity-0 transform translate-y-8"
       }`}
     >
+      {/* Cinematic Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="w-full h-full bg-gradient-to-br from-gray-300 via-black to-gray-300"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-100/20 via-gray-100/40 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+      </div>
+
+      {/* Navigation */}
+      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
+
+      {/* Hero */}
       <Hero
         isVisible={isVisible}
         scrollY={scrollY}
         scrollToSection={scrollToSection}
       />
+
+      {/* About */}
+      <About />
     </div>
   );
 }
