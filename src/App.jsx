@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import IntroScreen from "./components/IntroScreen";
 import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -41,6 +42,7 @@ function App() {
   }, [showIntro]);
 
   const scrollToSection = (sectionId) => {
+    console.log("clicked");
     document.getElementById(sectionId)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -61,6 +63,16 @@ function App() {
           : "opacity-0 transform translate-y-8"
       }`}
     >
+      {/* Cinematic Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-gray-900/40 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+      </div>
+
+      {/* Navigation */}
+      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
+
       <Hero
         isVisible={isVisible}
         scrollY={scrollY}
