@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import IntroScreen from "./components/IntroScreen";
-import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -42,10 +47,17 @@ function App() {
   }, [showIntro]);
 
   const scrollToSection = (sectionId) => {
-    console.log("clicked");
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+    console.log(sectionId);
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    gsap.to(window, {
+      duration: 0.1, // scroll seconds
+      scrollTo: {
+        y: element,
+        offsetY: 80,
+      },
+      ease: "power2.inOut",
     });
   };
 
@@ -73,11 +85,15 @@ function App() {
       {/* Navigation */}
       <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
+      {/* Hero */}
       <Hero
         isVisible={isVisible}
         scrollY={scrollY}
         scrollToSection={scrollToSection}
       />
+
+      {/* About */}
+      <About />
     </div>
   );
 }
