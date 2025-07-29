@@ -2,7 +2,7 @@
 import { defineConfig } from "tailwindcss";
 
 export default defineConfig({
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.{js,jsx}", "*.{js,ts,jsx,mdx}"],
   theme: {
     extend: {
       colors: {

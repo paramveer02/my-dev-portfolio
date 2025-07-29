@@ -7,7 +7,14 @@ export default function IntroScreen({ onComplete }) {
   const [showWelcome, setShowWelcome] = useState(false);
   const [startTransition, setStartTransition] = useState(false);
 
-  const greetings = ["• Namaste", "• सअगत हे", "• Bonjour", "• Hallo"];
+  const greetings = [
+    "Namaste",
+    "सअगत हे",
+    "Olá",
+    "Bonjour",
+    "こんにちわ",
+    "Hallo.",
+  ];
 
   useEffect(() => {
     const timer = setTimeout(
@@ -87,21 +94,21 @@ export default function IntroScreen({ onComplete }) {
           </>
         ) : (
           <div className="animate-welcome-3d-entrance">
-            <h1 className="text-4xl md:text-6xl font-light text-white mb-6 tracking-wide">
+            <h1 className="text-8xl md:text-8xl font-light text-white mb-8 tracking-wide">
               Welcome to my Portfolio
             </h1>
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto animate-pulse-glow"></div>
-            <p className="text-lg text-gray-300 mt-6 opacity-80">
+            <p className="text-4xl text-gray-300 mt-8 opacity-80">
               Crafting digital experiences with passion
             </p>
           </div>
         )}
       </div>
-      {/* TODO: Skip Button */}
+      {/* Skip Button */}
       <button
         onClick={() => {
           setStartTransition(true);
-          setTimeout(onComplete, 1000);
+          setTimeout(onComplete, 800);
         }}
         className="absolute bottom-8 right-8 text-gray-400 hover:text-white transition-all duration-300 text-sm opacity-60 hover:opacity-100 hover:transform hover:translate-x-1"
       >
