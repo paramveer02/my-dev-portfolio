@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-32 px-4 w-full h-full bg-gradient-to-br from-gray-700 via-black to-gray-700 pt-24"
+      className="relative py-32 px-4 w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-24"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid gap-16 lg:grid-cols-2 items-center">
@@ -53,7 +53,7 @@ export default function About() {
                   <img
                     src="profile.jpg"
                     alt="Paramveer portrait"
-                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover object-[18%_35%] grayscale hover:grayscale-0 transition duration-500 transform hover:scale-110 shadow-lg"
+                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover object-[18%_35%] grayscale hover:grayscale-0 transition duration-5000 transform hover:scale-100 shadow-lg"
                   />
                 </motion.div>
               </div>
