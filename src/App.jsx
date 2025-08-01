@@ -3,6 +3,7 @@ import IntroScreen from "./components/IntroScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Work from "./components/Work";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
@@ -52,7 +53,7 @@ function App() {
     if (!element) return;
 
     gsap.to(window, {
-      duration: 0.1, // scroll seconds
+      duration: 0.2, // scroll seconds
       scrollTo: {
         y: element,
         offsetY: 80,
@@ -94,6 +95,9 @@ function App() {
 
       {/* About */}
       <About />
+
+      {/* Work */}
+      <Work />
     </div>
   );
 }
