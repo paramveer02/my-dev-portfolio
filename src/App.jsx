@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Work from "./components/Work";
+import Skills from "./components/Skills";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
@@ -95,6 +96,9 @@ function App() {
 
       {/* About */}
       <About />
+
+      {/* Skills */}
+      <Skills />
 
       {/* Work */}
       <Work />

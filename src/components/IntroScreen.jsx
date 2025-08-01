@@ -44,7 +44,7 @@ export default function IntroScreen({ onComplete }) {
       } ${startTransition ? "transform-3d-transition" : ""}`}
       style={{
         transform: startTransition
-          ? "perspective(1000px) rotateX(-15deg) rotateY(5deg) translateZ(-200px) scale(0.9)"
+          ? "animate-welcome-exit"
           : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)",
         transformStyle: "preserve-3d",
       }}
