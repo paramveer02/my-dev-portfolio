@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer components {
+  .section-container {
+    @apply relative py-32 pt-24 px-4 w-full h-full bg-amber-50;
+  }
+}
