@@ -31,7 +31,7 @@ export default function IntroScreen({ onComplete }) {
           }, 1500);
         }
       },
-      showWelcome ? 2000 : currentGreeting === greetings.length - 1 ? 900 : 300
+      showWelcome ? 2000 : currentGreeting === greetings.length - 1 ? 900 : 200
     ); // each greeting for 300ms, last greet for 99ms & welcome page for 2000ms
 
     return () => clearTimeout(timer);
@@ -59,17 +59,14 @@ export default function IntroScreen({ onComplete }) {
                   key={greeting}
                   className={`absolute left-1/2 top-0 -translate-x-1/2 w-full text-3xl md:text-5xl font-light text-white tracking-wide transition-all duration-700 ease-in-out ${
                     index === currentGreeting
-                      ? "opacity-100 transform translate-y-0 scale-100"
-                      : index < currentGreeting
-                      ? "opacity-0 transform -translate-y-6 scale-95"
-                      : "opacity-0 transform translate-y-6 scale-95"
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-4 scale-95"
                   }`}
                   style={{ textAlign: "center" }}
                 >
                   {greeting}
                 </h1>
               ))}
-              {/* Placeholder for consistent height */}
               <h1 className="invisible text-3xl md:text-5xl font-light tracking-wide">
                 {greetings[0]}
               </h1>
@@ -80,7 +77,7 @@ export default function IntroScreen({ onComplete }) {
               {[...greetings, "welcome"].map((_, index) => (
                 <div
                   key={index}
-                  className={`h-2 rounded-full transition-all-duration-500 ease-out ${
+                  className={`h-2 rounded-full transition-all duration-500 ease-out ${
                     index < currentGreeting ||
                     (index === greetings.length && showWelcome)
                       ? "bg-blue-400 w-8 shadow-lg shadow-blue-400/500" // previous dots
