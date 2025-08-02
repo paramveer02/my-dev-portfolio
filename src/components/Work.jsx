@@ -1,12 +1,16 @@
 import ProjectShowcase from "./ProjectShowcase";
+import { motion } from "framer-motion";
 
 export default function Work() {
   return (
-    <section
-      id="work"
-      className="relative py-32 px-4 bg-black/10 backdrop-blur-sm bg-gradient-to-br from-gray-500 via-black to-gray-500 pt-24"
-    >
-      <div className="container mx-auto max-w-7xl">
+    <section id="work" className="section-container">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="container mx-auto max-w-7xl"
+      >
         <div className="text-center mb-20">
           <h2 className="text-5xl md:text-6xl font-light mb-8 text-white">
             Selected Work
@@ -63,7 +67,7 @@ export default function Work() {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

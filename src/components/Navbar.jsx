@@ -1,9 +1,16 @@
 import Button from "./ui/Button";
+import { motion } from "framer-motion";
 
 export default function Navbar({ activeSection, scrollToSection }) {
   return (
     <nav className="fixed top-0 z-50 w-full">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="container mx-auto flex h-20 items-center justify-between px-4"
+      >
         <div className="text-sm text-gray-300 hover:text-white">
           Portfolio by Paramveer
         </div>
@@ -49,7 +56,7 @@ export default function Navbar({ activeSection, scrollToSection }) {
             Contact
           </Button>
         </div>
-      </div>
+      </motion.div>
     </nav>
   );
 }

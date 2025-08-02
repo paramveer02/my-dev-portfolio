@@ -1,23 +1,26 @@
 import { Code } from "lucide-react";
 import { motion } from "framer-motion";
+import "../App.css";
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative py-32 px-4 w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-24"
-    >
-      <div className="container mx-auto max-w-6xl">
+    <section id="about" className="section-container">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div className="grid gap-16 lg:grid-cols-2 items-center">
           <div className="space-y-8">
             <div>
-              <h2 className="text-5xl md:text-6xl font-light mb-8 text-white">
+              <h2 className="text-5xl md:text-6xl font-light mb-8 text-black">
                 About Me
               </h2>
               <div className="w-24 h-px bg-blue-600 mb-8"></div>
             </div>
 
-            <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+            <div className="space-y-6 text-lg text-black leading-relaxed">
               <p>
                 [IN PROGRESS] I'm an intermediate full-stack developer with 2+
                 years of experience building modern web applications. My passion
@@ -63,7 +66,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
