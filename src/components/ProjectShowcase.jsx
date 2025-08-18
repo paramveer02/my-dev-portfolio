@@ -1,159 +1,129 @@
-import { useState, useEffect } from "react";
-import Badge from "./ui/Badge";
-import Button from "./ui/Button";
-import { IconBrandGithub } from "@tabler/icons-react";
-import { ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
 
 export default function ProjectShowcase({ project, index }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    if (!isHovering) return;
-
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-    }, 1500);
-
-    return () => clearInterval(interval);
-  }, [isHovering, project.images.length]);
+  const isReversed = index % 2 === 1;
+  const {
+    title,
+    description,
+    images = [],
+    tech = [],
+    year,
+    links = {},
+  } = project;
 
   return (
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
-      <div className={`space-y-6 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-        <div className="text-sm text-blue-400 font-medium">{project.year}</div>
-        <h3 className="text-4xl font-light text-white">{project.title}</h3>
-        <p className="text-lg text-gray-300 leading-relaxed">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-3">
-          {project.tech.map((tech) => (
-            <Badge
-              key={tech}
-              className="bg-white/10 text-gray-300 border-gray-700 px-3 py-1 hover:bg-white/20 transition-colors"
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.65, ease: "easeOut" }}
+      className="grid gap-10 lg:grid-cols-12 items-center"
+    >
+      {/* Images */}
+      <div className={`lg:col-span-7 ${isReversed ? "lg:order-2" : ""}`}>
+        <div className="relative">
+          {/* soft section glow */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 opacity-30
+                       bg-[radial-gradient(600px_300px_at_50%_0%,rgba(59,130,246,0.18),transparent_70%)]"
+          />
+          <div className="grid grid-cols-12 gap-3">
+            {/* Main image */}
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="col-span-12 md:col-span-12 rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
             >
-              {tech}
-            </Badge>
-          ))}
-        </div>
-        <div className="flex gap-4 pt-4">
-          <Button
-            className="border-gray-600 text-gray-300 hover:bg-white/10 hover:text-white bg-transparent"
-            asChild
-          >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconBrandGithub className="mr-2 h-4 w-4" />
-              Code
-            </a>
-          </Button>
-          <Button
-            className="border-gray-600 text-gray-300 hover:bg-white/10 hover:text-white bg-transparent"
-            asChild
-          >
-            <a
-              href="https://example.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLink className="mr-2 h-4 w-4" />
-              Live Demo
-            </a>
-          </Button>
-        </div>
-      </div>
+              {images[0] && (
+                <img
+                  src={images[0]}
+                  alt={`${title} main`}
+                  className="w-full h-[260px] md:h-[360px] object-cover"
+                  loading="lazy"
+                />
+              )}
+            </motion.div>
 
-      <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-        <div
-          className="relative aspect-video rounded-lg overflow-hidden border border-gray-800 group cursor-pointer"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => {
-            setIsHovering(false);
-            setCurrentImageIndex(0);
-          }}
-        >
-          {/* Image Container */}
-          <div className="relative w-full h-full">
-            {project.images.map((image, imgIndex) => (
-              <div
-                key={imgIndex}
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                  imgIndex === currentImageIndex
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-105"
-                }`}
+            {/* Thumbs */}
+            {[images[1], images[2], images[3]].filter(Boolean).map((src, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -6 }}
+                className="col-span-4 rounded-xl overflow-hidden border border-white/10 bg-white/5"
               >
                 <img
-                  src={`${image}`}
-                  alt={`${project.title} - View ${imgIndex + 1}`}
-                  className="object-cover w-full h-full"
+                  src={src}
+                  alt={`${title} screen ${i + 2}`}
+                  className="w-full h-28 md:h-32 object-cover"
+                  loading="lazy"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
-
-          {/* Overlay with slide indicators */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            {/* Slide Indicators */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {project.images.map((_, imgIndex) => (
-                <div
-                  key={imgIndex}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    imgIndex === currentImageIndex
-                      ? "bg-blue-400 w-8"
-                      : "bg-white/40 hover:bg-white/60"
-                  }`}
-                  onClick={() => setCurrentImageIndex(imgIndex)}
-                />
-              ))}
-            </div>
-
-            {/* Image Counter */}
-            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-white">
-              {currentImageIndex + 1} / {project.images.length}
-            </div>
-
-            {/* Hover Instruction */}
-            {!isHovering && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
-                  Hover to view slideshow
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Navigation Arrows */}
-          {isHovering && (
-            <>
-              <button
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-                onClick={() =>
-                  setCurrentImageIndex((prev) =>
-                    prev === 0 ? project.images.length - 1 : prev - 1
-                  )
-                }
-              >
-                ←
-              </button>
-              <button
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-                onClick={() =>
-                  setCurrentImageIndex(
-                    (prev) => (prev + 1) % project.images.length
-                  )
-                }
-              >
-                →
-              </button>
-            </>
-          )}
         </div>
       </div>
-    </div>
+
+      {/* Content */}
+      <div className={`lg:col-span-5 ${isReversed ? "lg:order-1" : ""}`}>
+        <div className="space-y-5">
+          <div className="flex items-center gap-3">
+            <span
+              className="inline-flex items-center px-2.5 py-1.5 rounded-full text-xs tracking-wide
+                             bg-white/5 text-gray-300 border border-white/10"
+            >
+              {year}
+            </span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
+
+          <h3 className="text-2xl md:text-3xl font-light text-white">
+            {title}
+          </h3>
+
+          <p className="text-gray-300/90 leading-relaxed">{description}</p>
+
+          {/* Tech chips */}
+          {/* Tech chips */}
+          <ul className="flex flex-wrap gap-2.5 pt-1">
+            {tech.map((t) => (
+              <li key={t}>
+                <span className="chip chip--tech">
+                  <span className="chip-dot" />
+                  {t}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* CTAs */}
+          <div className="pt-2 flex items-center gap-3">
+            <a
+              href={links.live || "#"}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                         border border-white/15 bg-white/5 text-white
+                         hover:bg-gradient-to-br hover:from-amber-400/15 hover:to-rose-400/15
+                         transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <ExternalLink className="w-4 h-4 opacity-80 group-hover:opacity-100" />
+              Live
+            </a>
+            <a
+              href={links.code || "#"}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                         border border-white/15 bg-white/5 text-white
+                         hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <Github className="w-4 h-4 opacity-80 group-hover:opacity-100" />
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.article>
   );
 }
