@@ -15,12 +15,15 @@ export default function Navbar({ activeSection, scrollToSection }) {
     []
   );
 
-  const activeIndex = Math.max(
-    0,
-    ITEMS.findIndex((i) => i.id === activeSection)
+  const activeIndex = useMemo(
+    () => ITEMS.findIndex((i) => i.id === activeSection),
+    [ITEMS, activeSection]
   );
-  const indicatorWidth = `${100 / ITEMS.length}%`;
-  const indicatorX = `translateX(${activeIndex * 100}%)`;
+  const showIndicator = activeIndex !== -1; // hide on hero (or any non-menu section)
+  const indicatorWidth = showIndicator ? `${100 / ITEMS.length}%` : "0px";
+  const indicatorX = showIndicator
+    ? `translateX(${activeIndex * 100}%)`
+    : "translateX(0)";
 
   // Top scroll progress
   useEffect(() => {
