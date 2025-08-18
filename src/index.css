@@ -1,7 +1,481 @@
-@import "tailwindcss";
+/* Cinematic Typography */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+@import "tailwindcss";
 @layer components {
   .section-container {
-    @apply relative py-32 pt-24 px-4 w-full h-full bg-amber-50;
+    @apply relative py-32 pt-24 px-4 w-full h-full;
+  }
+}
+
+/* ---------- Surfaces, frames, accents ---------- */
+@layer components {
+  /* Subtle glass card */
+  .surface {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.35)];
+  }
+  .surface-hover {
+    @apply transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(0,0,0,0.45)];
+  }
+
+  /* Gradient border frame (non-circular) */
+  .image-frame {
+    @apply p-[2px] rounded-2xl bg-gradient-to-br from-blue-500/50 via-cyan-400/40 to-purple-500/50 shadow-[0_12px_40px_rgba(59,130,246,0.15)];
+  }
+  .image-inner {
+    @apply rounded-2xl overflow-hidden bg-black/60 border border-white/10;
+  }
+
+  /* Section wrapper with consistent spacing */
+  .section {
+    @apply relative py-28 px-4;
+  }
+
+  /* Title underlines */
+  .eyebrow {
+    @apply w-24 h-px bg-blue-500/70;
+  }
+
+  /* Premium gradient headline */
+  .gradient-text {
+    background: linear-gradient(to bottom right, #fff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Cinematic Smooth Scrolling */
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: 100px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+/* Enhanced 3D Intro Animations */
+@keyframes welcomeFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95) rotateX(25deg);
+    transform-origin: top center;
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes float-3d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate3d(10px, -20px, 20px) rotateX(90deg) rotateY(45deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-10px, -40px, 40px) rotateX(180deg) rotateY(90deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate3d(15px, -20px, 20px) rotateX(270deg) rotateY(135deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5),
+      0 0 10px rgba(59, 130, 246, 0.3);
+    transform: scaleX(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.5);
+    transform: scaleX(1.1);
+  }
+}
+
+@keyframes transition-overlay {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes welcomeFadeExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.92) rotateX(15deg);
+    filter: blur(4px);
+  }
+}
+
+.animate-welcome-exit {
+  animation: welcomeFadeExit 0.9s ease-in forwards;
+}
+
+.animate-welcome-3d-entrance {
+  animation: welcomeFadeUp 1.4s ease-out forwards;
+}
+
+.animate-float-3d {
+  animation: float-3d 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-transition-overlay {
+  animation: transition-overlay 1.5s ease-out forwards;
+}
+
+/* 3D Transform Utilities */
+.transform-3d-transition {
+  transform-style: preserve-3d;
+  transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 1s ease-out forwards;
+}
+
+/* Cinematic Effects */
+.backdrop-blur-cinematic {
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Elegant Hover Effects */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: white;
+}
+
+/* Focus States */
+.focus-visible:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Cinematic Gradient Overlays */
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+/* Glass Morphism Effects */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Typography Enhancements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+/* Button Enhancements */
+button {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Image Optimizations */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Skip Button Hover */
+.skip-button {
+  transition: all 0.3s ease;
+}
+
+.skip-button:hover {
+  transform: translateX(5px);
+  color: #60a5fa;
+}
+
+/* Prevent any white flashes */
+html,
+body {
+  background-color: #000000;
+}
+
+/* Enhanced Progress Indicators */
+.progress-indicator {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 3D Depth Effects */
+.depth-layer-1 {
+  transform: translateZ(10px);
+}
+
+.depth-layer-2 {
+  transform: translateZ(20px);
+}
+
+.depth-layer-3 {
+  transform: translateZ(30px);
+}
+
+/* Smooth Portfolio Entrance */
+.portfolio-entrance {
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced Glow Effects */
+.enhanced-glow {
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+}
+
+/* Perspective Container */
+.perspective-container {
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+@keyframes bg-pan {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+.animate-bg-pan {
+  animation: bg-pan 18s ease-in-out infinite;
+}
+
+/* ---------- Aurora Cursor Spotlight (site-wide) ---------- */
+:root {
+  --spot-x: -200px;
+  --spot-y: -200px;
+}
+
+.spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  /* Three layers: neutral gloss + blue/peach bloom */
+  background: radial-gradient(
+      180px 180px at var(--spot-x) var(--spot-y),
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.08) 32%,
+      transparent 62%
+    ),
+    radial-gradient(
+      420px 320px at calc(var(--spot-x) - 60px) calc(var(--spot-y) + 40px),
+      rgba(59, 130, 246, 0.14),
+      transparent 65%
+    ),
+    radial-gradient(
+      420px 320px at calc(var(--spot-x) + 120px) calc(var(--spot-y) - 80px),
+      rgba(251, 146, 60, 0.12),
+      transparent 65%
+    );
+  mix-blend-mode: soft-light; /* premium on dark UIs */
+  will-change: background;
+  transition: background 120ms ease-out;
+  pointer-events: none;
+}
+
+/* Specular highlight "sheen" for a modern look */
+.aurora-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120px 120px at var(--spot-x) var(--spot-y),
+    rgba(255, 255, 255, 0.25),
+    transparent 70%
+  );
+  mix-blend-mode: overlay;
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+/* Disable on touch to save GPU */
+@media (pointer: coarse) {
+  .spotlight-overlay {
+    display: none;
+  }
+}
+
+/* ---------- Interactive chips (used in Work tech list + Hire badges) ---------- */
+@layer components {
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+           text-sm text-gray-200 bg-white/5 border border-white/10
+           transition-all duration-300;
+  }
+  .chip:hover {
+    @apply bg-white/10 border-white/20 -translate-y-0.5
+           shadow-[0_8px_24px_rgba(59,130,246,0.15)];
+  }
+  .chip:focus-visible {
+    @apply outline-none ring-2 ring-amber-300/60;
+  }
+
+  /* Tech chips (blue dot scales on hover) */
+  .chip--tech .chip-dot {
+    width: 0.375rem; /* 6px */
+    height: 0.375rem;
+    border-radius: 9999px;
+    background: rgba(96, 165, 250, 0.9); /* blue-400 */
+    transition: transform 300ms ease;
+  }
+  .chip--tech:hover .chip-dot {
+    transform: scale(1.25);
+  }
+
+  /* Accent badges (used in Hire header) */
+  .chip--accent:hover {
+    background-image: linear-gradient(
+      90deg,
+      rgba(251, 146, 60, 0.12),
+      rgba(244, 114, 182, 0.1)
+    );
+    box-shadow: 0 10px 30px rgba(251, 146, 60, 0.18);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .chip:hover {
+    transform: none;
   }
 }
