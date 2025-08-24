@@ -217,7 +217,7 @@ export default function HireContact() {
               <h3 className="text-white text-lg font-medium">Links</h3>
             </div>
             <p className="text-gray-300/90 mb-4 text-[15px]">
-              Quick references: code, profile, and a one-page resume.
+              Quick references: code, profile and resume.
             </p>
             <div className="flex flex-wrap items-center gap-2.5">
               <a
