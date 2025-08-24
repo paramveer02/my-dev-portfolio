@@ -129,7 +129,7 @@ export default function Footer({ scrollToSection }) {
 
         {/* bottom row */}
         <div className="mt-10 flex items-center justify-between gap-4 text-xs text-gray-500">
-          <div>© {new Date().getFullYear()} Paramveer Marwah</div>
+          <div>© {new Date().getFullYear()} Paramvir Marwah</div>
           <div className="hidden sm:block">
             Built with React · Tailwind · Framer Motion
           </div>

@@ -52,9 +52,8 @@ export default function HireContact() {
           </h2>
           <div className="w-24 h-px bg-blue-600 mx-auto" />
           <p className="mt-6 text-gray-300/90 max-w-2xl mx-auto">
-            I’m looking for a team where I can learn quickly, write clear code,
-            and contribute to meaningful work. I care about company values,
-            consistent standards, and being useful from day one.
+            I’m looking to join a team where I can ship reliable features, keep
+            the codebase clean and tie my work to clear business goals.
           </p>
         </div>
 
@@ -253,10 +252,10 @@ export default function HireContact() {
         </div>
 
         {/* Footer line */}
-        <div className="mt-10 text-center text-gray-400 text-sm">
+        {/* <div className="mt-10 text-center text-gray-400 text-sm">
           Thanks for considering my profile. If the role aligns, I’d be glad to
           contribute and keep learning.
-        </div>
+        </div> */}
       </motion.div>
 
       {/* Subtle sheen animation */}

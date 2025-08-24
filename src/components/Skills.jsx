@@ -162,9 +162,8 @@ export default function Skills() {
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         className="mt-14 text-center text-gray-400 text-sm max-w-3xl mx-auto"
       >
-        Most recent work: MERN apps with auth, file uploads, charts and maps. I
-        value readable code, predictable releases, and subtle motion that makes
-        the UI feel alive—not busy.
+        Most recent work: MERN apps with auth, file uploads, charts, maps and
+        more.
       </motion.p>
     </section>
   );
