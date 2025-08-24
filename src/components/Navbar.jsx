@@ -81,7 +81,7 @@ export default function Navbar({ activeSection, scrollToSection }) {
                 <Button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`basis-24 text-sm mx-1 px-3 py-1.5 rounded-lg transition-colors
+                  className={`basis-24 text-sm mx-1 px-3 py-1.5 rounded-lg transition-colors cursor-pointer
                     ${
                       activeSection === item.id
                         ? "text-white"
@@ -112,7 +112,7 @@ export default function Navbar({ activeSection, scrollToSection }) {
             className="hidden sm:inline-flex text-sm px-3 py-1.5 rounded-lg
                        border border-white/15 bg-white/5 text-white
                        hover:bg-gradient-to-br hover:from-amber-400/15 hover:to-rose-400/15
-                       transition-colors"
+                       transition-colors cursor-pointer"
           >
             Let’s talk
           </Button>

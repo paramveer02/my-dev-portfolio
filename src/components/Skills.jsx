@@ -1,3 +1,4 @@
+// components/Skills.jsx
 import { Code, Server, Database } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -16,32 +17,60 @@ const item = {
 };
 
 export default function Skills() {
+  // Curated to mirror JobFix, EventSpark, Tic-Tac-Toe
   const CATEGORIES = [
     {
       title: "Frontend",
       icon: Code,
-      accent: "from-blue-500/40 via-cyan-400/30 to-purple-500/40",
+      accent: "from-blue-500/40 via-cyan-400/30 to-blue-500/40",
+      blurb:
+        "Sharp UIs with motion where it helps. I care about first-load speed, accessibility and clean component APIs.",
       skills: [
         "JavaScript (ES6+)",
         "React",
-        "TypeScript",
+        "Vite",
         "HTML5",
         "CSS3",
         "Tailwind CSS",
         "Framer Motion",
+        "Recharts",
       ],
     },
     {
-      title: "Backend",
+      title: "Backend & APIs",
       icon: Server,
       accent: "from-emerald-500/40 via-teal-400/30 to-sky-400/40",
-      skills: ["Node.js", "Express", "REST APIs", "Python", "Django"],
+      blurb:
+        "Pragmatic REST backends with auth, validation and good error handling. Built to be readable and easy to extend.",
+      skills: [
+        "Node.js",
+        "Express",
+        "REST APIs",
+        "JWT Auth",
+        "Python",
+        "Django",
+        "Spring Boot",
+      ],
     },
     {
-      title: "Database & Tools",
+      title: "Databases & Ops",
       icon: Database,
-      accent: "from-amber-400/40 via-rose-400/30 to-fuchsia-400/40",
-      skills: ["MongoDB", "PostgreSQL", "Git", "Docker", "Postman", "VS Code"],
+      accent: "from-indigo-500/35 via-blue-500/30 to-purple-500/35",
+      blurb:
+        "Ship-ready workflows: from local dev to cloud. Sensible schemas, file uploads, and smooth deploys.",
+      skills: [
+        "MongoDB · Mongoose",
+        "psql (CLI)",
+        "pgAdmin 4",
+        "Postman",
+        "Git / GitHub / BitBucket",
+        "Render",
+        "Cloudinary",
+        "Gemini GenAI",
+        "Docker",
+        "Zod Validation",
+        "Leaflet / Google Maps",
+      ],
     },
   ];
 
@@ -60,8 +89,7 @@ export default function Skills() {
         </h2>
         <div className="w-24 h-px bg-blue-600 mx-auto" />
         <p className="mt-6 text-gray-300/90 max-w-2xl mx-auto">
-          The tools and technologies I use to design, build, and ship reliable
-          web apps.
+          What I use day-to-day to design, build, and ship reliable apps.
         </p>
       </motion.div>
 
@@ -73,11 +101,11 @@ export default function Skills() {
         viewport={{ once: true, amount: 0.2 }}
         className="grid gap-8 md:grid-cols-3"
       >
-        {CATEGORIES.map(({ title, icon: Icon, skills, accent }) => (
+        {CATEGORIES.map(({ title, icon: Icon, skills, accent, blurb }) => (
           <motion.article
             key={title}
             variants={item}
-            className="relative surface p-8 surface-hover"
+            className="relative surface p-8 surface-hover group"
           >
             {/* Gradient top border accent */}
             <div
@@ -86,15 +114,15 @@ export default function Skills() {
             />
 
             {/* Title / icon */}
-            <header className="flex items-center gap-4 mb-6">
-              <div
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center
-                              shadow-[0_6px_24px_rgba(0,0,0,.35)]"
-              >
+            <header className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_6px_24px_rgba(0,0,0,.35)]">
                 <Icon className="h-6 w-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-medium text-white">{title}</h3>
             </header>
+
+            {/* One-line personal blurb */}
+            <p className="text-gray-400 text-sm mb-5">{blurb}</p>
 
             {/* Chips */}
             <ul className="flex flex-wrap gap-3">
@@ -104,6 +132,7 @@ export default function Skills() {
                     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
                                bg-white/5 text-gray-200 text-sm border border-white/10
                                hover-lift"
+                    title={s}
                   >
                     <span className="inline-block size-1.5 rounded-full bg-blue-400/80 shadow-[0_0_8px_rgba(59,130,246,.45)]" />
                     {s}
@@ -115,31 +144,28 @@ export default function Skills() {
             {/* Soft corner glow on hover */}
             <span
               aria-hidden
-              className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100
-                         transition-opacity duration-500"
+              className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               style={{
                 background:
-                  "radial-gradient(600px 120px at 20% 0%, rgba(59,130,246,0.12), transparent), radial-gradient(600px 120px at 80% 100%, rgba(168,85,247,0.12), transparent)",
+                  "radial-gradient(600px 120px at 20% 0%, rgba(59,130,246,0.12), transparent), radial-gradient(600px 120px at 80% 100%, rgba(99,102,241,0.12), transparent)",
               }}
             />
           </motion.article>
         ))}
       </motion.div>
 
-      {/* Subtle marquee of comfort zones (optional, purely visual) */}
-      <motion.div
+      {/* Footnote — keeps it human */}
+      <motion.p
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        className="mt-14 text-center text-gray-400 text-sm"
+        className="mt-14 text-center text-gray-400 text-sm max-w-3xl mx-auto"
       >
-        <span className="opacity-80">Comfort zones: </span>
-        <span className="text-gray-300">
-          SPA architecture · RESTful APIs · Auth & JWT · CI-friendly code ·
-          Responsive UI
-        </span>
-      </motion.div>
+        Most recent work: MERN apps with auth, file uploads, charts and maps. I
+        value readable code, predictable releases, and subtle motion that makes
+        the UI feel alive—not busy.
+      </motion.p>
     </section>
   );
 }

@@ -3,54 +3,57 @@ import { motion } from "framer-motion";
 
 const PROJECTS = [
   {
-    title: "E-Commerce Platform",
-    year: "2024",
+    title: "JobFix — Job Tracking App",
+    year: "2025",
     description:
-      "A full-stack e-commerce solution with auth, product management, and payments. Built for speed and DX.",
+      "A full-stack tracker that keeps every application in one place: secure auth, profile/avatars, job CRUD, powerful search & filters, and charts for monthly trends. Built for management with a clean, focused UX.",
     images: [
-      "https://placehold.co/800x520/0b0b0b/ffffff?text=E-Commerce+Homepage+Dark",
-      "https://placehold.co/400x260/111111/ffffff?text=Product+Page+Dark",
-      "https://placehold.co/400x260/161616/ffffff?text=Cart+Checkout+Dark",
-      "https://placehold.co/400x260/1a1a1a/ffffff?text=Admin+Dashboard+Dark",
+      "jobFix/jobfix-1.png",
+      "jobFix/jobfix-2.png",
+      "jobFix/jobfix-3.png",
+      "jobFix/jobfix-4.png",
     ],
-    tech: ["React", "Node.js", "Express", "MongoDB"],
+    meta: ["Responsive"],
+    tech: ["React", "Vite", "Node.js", "Express", "MongoDB"],
     links: {
-      live: "#",
-      code: "#",
+      live: "https://jobfix.onrender.com",
+      code: "https://github.com/paramveer02/Jobfix-platform", // client README links to server repo
+    },
+    codeServer: "https://github.com/paramveer02/jobfix-mern-server",
+  },
+  {
+    title: "EventSpark — Event Discovery Platform",
+    year: "2025",
+    description:
+      "A modern event discovery and management platform where users can create, explore, and manage events with location-based filtering, AI-powered city guides, and sleek interactive UI.",
+    images: [
+      "eventSpark/event-1.jpg",
+      "eventSpark/event-2.jpg",
+      "eventSpark/event-3.jpg",
+      "eventSpark/event-4.jpg",
+    ],
+    meta: ["Responsive", "AI-powered (Gemini)", "Location-based"],
+    tech: ["React", "Vite", "Node.js", "Express", "MongoDB"],
+    codeServer: "https://github.com/paramveer02/events-node-backend",
+    links: {
+      live: "https://eventspark-vjnm.onrender.com",
+      code: "https://github.com/paramveer02/react-city-events",
     },
   },
   {
-    title: "Task Management System",
-    year: "2024",
+    title: "Tic-Tac-Toe — React Mini-Game",
+    year: "2025",
     description:
-      "Django-based task manager with real-time updates, team collaboration and clean responsive UI.",
+      "A polished, pure-React take on the classic. Two players alternate on a 3×3 board with inline name editing, move log (row/column), winner & draw detection, and one-click rematch. Built to showcase clean component design and immutable state updates.",
     images: [
-      "https://placehold.co/800x520/0b0b0b/ffffff?text=Calendar+View",
-      "https://placehold.co/400x260/111111/ffffff?text=Dashboard",
-      "https://placehold.co/400x260/161616/ffffff?text=Kanban+Board",
-      "https://placehold.co/400x260/1a1a1a/ffffff?text=Team+Collab",
+      "tic-tac-toe/tic-1.png",
+      "tic-tac-toe/tic-2.png",
+      "tic-tac-toe/tic-3.png",
     ],
-    tech: ["Python", "Django", "PostgreSQL", "Bootstrap"],
+    tech: ["React", "Vite", "JavaScript"],
     links: {
-      live: "#",
-      code: "#",
-    },
-  },
-  {
-    title: "Weather Analytics Dashboard",
-    year: "2023",
-    description:
-      "React weather app with API integration, location services and charted insights. Polished, fast, reliable.",
-    images: [
-      "https://placehold.co/800x520/0b0b0b/ffffff?text=Weather+Dashboard",
-      "https://placehold.co/400x260/111111/ffffff?text=Charts+Analytics",
-      "https://placehold.co/400x260/161616/ffffff?text=Map+View",
-      "https://placehold.co/400x260/1a1a1a/ffffff?text=Mobile+View",
-    ],
-    tech: ["React", "JavaScript", "API", "CSS3"],
-    links: {
-      live: "#",
-      code: "#",
+      live: "https://react-tic-tac-toe-b8v0.onrender.com",
+      code: "https://github.com/paramveer02/react-tic-tac-toe",
     },
   },
 ];

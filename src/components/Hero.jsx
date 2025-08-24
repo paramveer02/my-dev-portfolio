@@ -66,9 +66,9 @@ export default function Hero({ isVisible, scrollY, scrollToSection }) {
                        text-base md:text-lg font-medium transition-transform duration-100
                        hover:scale-100 hover:bg-gradient-to-br hover:from-amber-400/20 hover:to-rose-400/20
              hover:shadow-[0_0_20px_rgba(251,146,60,0.5),0_0_40px_rgba(251,146,60,0.4)]
-             animate-pulse"
+             animate-pulse cursor-pointer"
           >
-            <span className="pointer-events-none group-hover:font-bold transition-all duration-200">
+            <span className="pointer-events-none group-hover:font-bold transition-all duration-200 ">
               View Work
             </span>
           </Button>

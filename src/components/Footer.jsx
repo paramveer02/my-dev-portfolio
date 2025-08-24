@@ -120,8 +120,8 @@ export default function Footer({ scrollToSection }) {
               {phone}
             </a>
 
-            <div className="inline-flex items-center gap-1 text-sm text-gray-400">
-              <MapPin className="ml-2 w-4 h-4" />
+            <div className="flex items-center gap-1 text-sm mt-0.5 text-gray-300 hover:text-white cursor-pointer">
+              <MapPin className="w-4 h-4" />
               {location}
             </div>
           </div>

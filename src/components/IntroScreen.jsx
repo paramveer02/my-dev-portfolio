@@ -3,14 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function IntroScreen({
   onComplete,
-  stepMs = 400, // per greeting
-  lastHold = 900, // hold on LAST greeting
+  stepMs = 300, // per greeting
+  lastHold = 1000, // hold on LAST greeting
   welcomeHold = 2000, // how long "Welcome" stays
 }) {
   const greetings = [
     "Namaste",
     "स्वागत है",
     "Olá",
+    "привет",
     "Bonjour",
     "こんにちは",
     "Hallo!",
@@ -158,9 +159,7 @@ export default function IntroScreen({
                   Welcome to my portfolio
                 </h1>
                 <div className="mt-4 h-px w-32 bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-                <p className="mt-4 text-[clamp(1rem,2.6vw,1.25rem)] text-gray-200/90">
-                  Crafting fast, elegant web apps.
-                </p>
+                <p className="mt-4 text-[clamp(1rem,2.6vw,1.25rem)] text-gray-200/90"></p>
               </motion.div>
             )}
           </AnimatePresence>
