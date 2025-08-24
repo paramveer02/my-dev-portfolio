@@ -221,7 +221,7 @@ export default function HireContact() {
             </p>
             <div className="flex flex-wrap items-center gap-2.5">
               <a
-                href="https://github.com/yourhandle"
+                href="https://github.com/paramveer02"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
@@ -230,7 +230,7 @@ export default function HireContact() {
                 GitHub
               </a>
               <a
-                href="https://www.linkedin.com/in/yourhandle"
+                href="https://www.linkedin.com/in/paramveer-marwah/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
