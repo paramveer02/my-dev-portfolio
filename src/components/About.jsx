@@ -39,7 +39,7 @@ export default function About() {
               <span className="text-white/90 font-medium">
                 Paramveer Marwah
               </span>
-              , a backend-leaning full-stack developer who turns fuzzy
+              , a backend-leaning full-stack developer who turns messy
               requirements into clear APIs and small, safe releases. My recent
               focus is the{" "}
               <span className="text-white/90 font-medium">MERN</span> stack,
@@ -48,11 +48,11 @@ export default function About() {
               and <span className="text-white/90 font-medium">Java/Spring</span>
               . In production settings, I’ve shipped a{" "}
               <span className="text-white/90 font-medium">
-                carbon-emissions module
+                carbon-emissions module{" "}
               </span>
               that made calculations faster and more precise, and an{" "}
               <span className="text-white/90 font-medium">
-                HR compensation (gross↔net) feature
+                HR compensation (gross↔net) feature{" "}
               </span>
               that simplified payroll steps and reduced manual work. I care
               about readable, DRY code, focused tests where they matter, and

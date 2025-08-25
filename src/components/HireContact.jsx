@@ -11,6 +11,7 @@ import {
   Briefcase,
   MapPin,
   Award,
+  GraduationCap,
   ExternalLink,
   Archive,
 } from "lucide-react";
@@ -19,15 +20,15 @@ import { useState } from "react";
 export default function HireContact() {
   const [copied, setCopied] = useState(false);
 
-  // — Customize —
-  const email = "paramveermarwahafc@gmail.com";
+  const email = "paramvir.marwah@gmail.com";
   const resumeUrl = "/Paramveer_Marwah_Resume.pdf";
 
-  // Point these to your pages/files (Drive/Notion/folder routes, etc.)
-  const certificatesListUrl = "/certs/";
-  const certificatesZipUrl = "/certs/all-certs.zip"; // optional
-  const lettersListUrl = "/letters/";
-  const lettersZipUrl = "/letters/all-letters.zip"; // optional
+  const degreesListUrl = "/docs/degrees-2025.pdf";
+  const degreesZipUrl = "/docs/degrees-2025.pdf.zip";
+  const certificatesListUrl = "/docs/certificates-2025.pdf";
+  const certificatesZipUrl = "/docs/certificates-2025.pdf.zip";
+  const lettersListUrl = "/docs/Recommendation-2025.pdf";
+  const lettersZipUrl = "/docs/Recommendation-2025.pdf.zip";
   // ————————
 
   function handleCopy() {
@@ -140,7 +141,35 @@ export default function HireContact() {
             </div>
 
             <div className="grid gap-3">
-              {/* Row: Certificates */}
+              {/* Row: Degrees */}
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
+                <span className="inline-flex items-center gap-2 text-white">
+                  <GraduationCap className="w-4.5 h-4.5 opacity-90" />
+                  Degrees
+                </span>
+                <span className="flex items-center gap-2">
+                  <a
+                    href={degreesListUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    View
+                  </a>
+                  {degreesZipUrl && (
+                    <a
+                      href={degreesZipUrl}
+                      download
+                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
+                    >
+                      <Archive className="w-3.5 h-3.5" />
+                      ZIP
+                    </a>
+                  )}
+                </span>
+              </div>
+
               <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
                 <span className="inline-flex items-center gap-2 text-white">
                   <Award className="w-4.5 h-4.5 opacity-90" />

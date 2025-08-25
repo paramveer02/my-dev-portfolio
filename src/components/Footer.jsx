@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, ArrowUpRight, ArrowUp } from "lucide-react";
 
 export default function Footer({ scrollToSection }) {
   // ——— customize these ———
-  const email = "paramveermarwahafc@gmail.com";
+  const email = "paramvir.marwah@gmail.com";
   const phone = "+49 17643835327";
   const location = "Leipzig, Germany";
   const NAV = [

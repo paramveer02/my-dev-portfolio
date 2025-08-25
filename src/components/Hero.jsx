@@ -43,7 +43,7 @@ export default function Hero({ isVisible, scrollY, scrollToSection }) {
           <div className="space-y-4">
             <h1 className="font-light tracking-tight leading-[0.85]">
               <span className="block text-[clamp(2.5rem,9vw,10.5rem)]">
-                PARAMVEER
+                PARAMVIR
               </span>
               <span
                 className="block text-[clamp(2.5rem,9vw,10.5rem)]

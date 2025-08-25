@@ -14,7 +14,7 @@ const PROJECTS = [
       "jobFix/jobfix-4.png",
     ],
     meta: ["Responsive"],
-    tech: ["React", "Vite", "Node.js", "Express", "MongoDB"],
+    tech: ["React", "Vite", "Node.js", "Express", "Cloudinary", "MongoDB"],
     links: {
       live: "https://jobfix.onrender.com",
       code: "https://github.com/paramveer02/Jobfix-platform", // client README links to server repo
@@ -50,6 +50,7 @@ const PROJECTS = [
       "tic-tac-toe/tic-2.png",
       "tic-tac-toe/tic-3.png",
     ],
+    meta: ["Responsive"],
     tech: ["React", "Vite", "JavaScript"],
     links: {
       live: "https://react-tic-tac-toe-b8v0.onrender.com",

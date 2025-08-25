@@ -89,7 +89,7 @@ export default function Skills() {
         </h2>
         <div className="w-24 h-px bg-blue-600 mx-auto" />
         <p className="mt-6 text-gray-300/90 max-w-2xl mx-auto">
-          What I use day-to-day to design, build, and ship reliable apps.
+          What I use day-to-day to design, build & deliver reliable apps.
         </p>
       </motion.div>
 
