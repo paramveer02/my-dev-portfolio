@@ -13,7 +13,7 @@ import {
   Award,
   GraduationCap,
   ExternalLink,
-  Archive,
+  Download,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -24,11 +24,13 @@ export default function HireContact() {
   const resumeUrl = "/Paramveer_Marwah_Resume.pdf";
 
   const degreesListUrl = "/docs/degrees-2025.pdf";
-  const degreesZipUrl = "/docs/degrees-2025.pdf.zip";
+  // const degreesZipUrl = "/docs/degrees-2025.pdf.zip";
   const certificatesListUrl = "/docs/certificates-2025.pdf";
-  const certificatesZipUrl = "/docs/certificates-2025.pdf.zip";
+  // const certificatesZipUrl = "/docs/certificates-2025.pdf.zip";
   const lettersListUrl = "/docs/Recommendation-2025.pdf";
-  const lettersZipUrl = "/docs/Recommendation-2025.pdf.zip";
+  const completeApplicationUrl =
+    "/downloads/Paramveer_Marwah_Complete_Application.pdf";
+  // const lettersZipUrl = "/docs/Recommendation-2025.pdf.zip";
   // ————————
 
   function handleCopy() {
@@ -63,18 +65,18 @@ export default function HireContact() {
           <div className="absolute inset-0 -z-10 rounded-2xl blur-2xl bg-gradient-to-r from-blue-500/15 via-cyan-400/12 to-blue-500/15" />
           <div className="relative rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-sm px-3 py-2 md:px-4 md:py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-300/25 bg-emerald-400/10 text-emerald-200 text-sm md:text-[0.95rem]">
+              <span className="chip chip--accent inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-300/25 bg-emerald-400/10 text-emerald-200 text-sm md:text-[0.95rem]">
                 <span className="relative inline-flex items-center justify-center">
                   <span className="absolute inline-block size-2.5 rounded-full bg-emerald-400/35 animate-ping" />
                   <span className="relative inline-block size-2 rounded-full bg-emerald-400" />
                 </span>
                 Actively seeking · Full-time
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
+              <span className="chip chip--accent inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
                 <Briefcase className="w-4 h-4 opacity-80" />
                 Backend · Full-Stack
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
+              <span className="chip chip--accent inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
                 <MapPin className="w-4 h-4 opacity-80" />
                 Germany (CET) · Remote-friendly
               </span>
@@ -122,7 +124,7 @@ export default function HireContact() {
             </a>
           </motion.div>
 
-          {/* Achievements & Recommendations — no hover, inline actions (bulletproof) */}
+          {/* Credentials & References — no hover, inline actions (bulletproof) */}
           <motion.div
             whileHover={{ y: -3 }}
             className="surface p-5 surface-hover"
@@ -136,11 +138,39 @@ export default function HireContact() {
                 <Award className="w-5 h-5 text-blue-400" />
               </div>
               <h3 className="text-white text-lg font-medium">
-                Achievements & Recommendations
+                Credentials & References
               </h3>
             </div>
 
             <div className="grid gap-3">
+              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
+                <span className="inline-flex items-center gap-2 text-white">
+                  <Award className="w-4.5 h-4.5 opacity-90" />
+                  Certificates
+                </span>
+                <span className="flex items-center gap-2">
+                  <a
+                    href={certificatesListUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    View
+                  </a>
+                  {/* {certificatesZipUrl && (
+                    <a
+                      href={certificatesZipUrl}
+                      download
+                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
+                    >
+                      <Archive className="w-3.5 h-3.5" />
+                      ZIP
+                    </a>
+                  )} */}
+                </span>
+              </div>
+
               {/* Row: Degrees */}
               <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
                 <span className="inline-flex items-center gap-2 text-white">
@@ -157,7 +187,7 @@ export default function HireContact() {
                     <ExternalLink className="w-3.5 h-3.5" />
                     View
                   </a>
-                  {degreesZipUrl && (
+                  {/* {degreesZipUrl && (
                     <a
                       href={degreesZipUrl}
                       download
@@ -166,35 +196,7 @@ export default function HireContact() {
                       <Archive className="w-3.5 h-3.5" />
                       ZIP
                     </a>
-                  )}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
-                <span className="inline-flex items-center gap-2 text-white">
-                  <Award className="w-4.5 h-4.5 opacity-90" />
-                  Certificates
-                </span>
-                <span className="flex items-center gap-2">
-                  <a
-                    href={certificatesListUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View
-                  </a>
-                  {certificatesZipUrl && (
-                    <a
-                      href={certificatesZipUrl}
-                      download
-                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                    >
-                      <Archive className="w-3.5 h-3.5" />
-                      ZIP
-                    </a>
-                  )}
+                  )} */}
                 </span>
               </div>
 
@@ -214,7 +216,7 @@ export default function HireContact() {
                     <ExternalLink className="w-3.5 h-3.5" />
                     View
                   </a>
-                  {lettersZipUrl && (
+                  {/* {lettersZipUrl && (
                     <a
                       href={lettersZipUrl}
                       download
@@ -223,15 +225,60 @@ export default function HireContact() {
                       <Archive className="w-3.5 h-3.5" />
                       ZIP
                     </a>
-                  )}
+                  )} */}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-gray-500 mt-3">
-              Files open in a new tab. PDFs are named clearly; ZIPs are
-              optional.
-            </p>
+            {/* Download complete application */}
+            <div className="mt-3 flex justify-center">
+              <div className="relative inline-block group">
+                <a
+                  href={completeApplicationUrl}
+                  download
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg
+                 border border-white/15 bg-white/5 text-gray-100 text-sm
+                 hover:bg-white/10 transition-all duration-200 hover:-translate-y-0.5
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+                  aria-describedby="dl-tooltip"
+                >
+                  <Download className="w-4 h-4 opacity-90" />
+                  Download complete application
+                </a>
+
+                {/* Tooltip */}
+                <div
+                  id="dl-tooltip"
+                  role="tooltip"
+                  className="pointer-events-none absolute left-0 top-[calc(100%+8px)] z-20 w-72
+                 rounded-xl border border-white/10 bg-black/80 backdrop-blur-md
+                 text-gray-200 text-xs p-3 opacity-0 translate-y-1
+                 transition-all duration-200
+                 group-hover:opacity-100 group-hover:translate-y-0
+                 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+                >
+                  <div className="font-semibold text-white mb-1.5">
+                    Will download:
+                  </div>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Résumé (PDF)</li>
+                    <li>Certificates (PDF)</li>
+                    <li>Degree (PDF)</li>
+                    <li>Recommendation letters (PDF)</li>
+                  </ul>
+                  <div className="mt-2 text-[11px] text-gray-400">
+                    Packaged as a single merged PDF.
+                  </div>
+
+                  {/* little caret */}
+                  <span
+                    aria-hidden
+                    className="absolute -top-2 left-4 inline-block size-3 rotate-45
+                   bg-black/80 border-l border-t border-white/10"
+                  />
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Links — compact */}
