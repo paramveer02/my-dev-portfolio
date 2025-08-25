@@ -2,6 +2,54 @@ import Button from "./ui/Button";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
+function LeipzigClock({ withSeconds = false }) {
+  const tz = "Europe/Berlin";
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // time with zone (CET/CEST)
+  const timeFmt = useMemo(
+    () =>
+      new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        ...(withSeconds ? { second: "2-digit" } : {}),
+        hour12: false,
+        timeZone: tz,
+        timeZoneName: "short",
+      }),
+    [tz, withSeconds]
+  );
+
+  const dateFmt = useMemo(
+    () =>
+      new Intl.DateTimeFormat("en-GB", {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        timeZone: tz,
+      }),
+    [tz]
+  );
+
+  const timeText = timeFmt.format(now); // e.g. "14:26 CEST"
+  const dateText = dateFmt.format(now); // e.g. "Mon, 25 Aug"
+
+  return (
+    <span
+      className="hidden sm:inline font-mono text-gray-200/90"
+      title={`${dateText}`}
+      aria-label={`Local time in Leipzig, Germany: ${timeText}`}
+    >
+      <span className="tabular-nums">{timeText}</span>
+    </span>
+  );
+}
+
 export default function Navbar({ activeSection, scrollToSection }) {
   const [progress, setProgress] = useState(0);
 
@@ -70,7 +118,7 @@ export default function Navbar({ activeSection, scrollToSection }) {
             >
               PM
             </span>
-            <span className="hidden sm:inline">My Portfolio</span>
+            <LeipzigClock withSeconds={true} />
           </button>
 
           {/* Nav */}
