@@ -255,7 +255,7 @@ export default function ProjectShowcase({ project, index }) {
             <div className="h-px flex-1 bg-white/10" />
           </div>
 
-          <h3 className="text-2xl md:text-3xl font-light text-white">
+          <h3 className="text-[clamp(3.75rem,3.6vw,2.75rem)] leading-tight font-light text-white tracking-tight">
             {title}
           </h3>
 
