@@ -36,9 +36,7 @@ export default function About() {
           <div className="space-y-5 text-[clamp(1rem,1.05vw,1.06rem)] text-gray-300/90 leading-relaxed max-w-4xl">
             <p className="text-justify">
               I’m{" "}
-              <span className="text-white/90 font-medium">
-                Paramveer Marwah
-              </span>
+              <span className="text-white/90 font-medium">Paramvir Marwah</span>
               , a backend-leaning full-stack developer who turns messy
               requirements into clear APIs and small, safe releases. My recent
               focus is the{" "}
@@ -114,7 +112,7 @@ export default function About() {
               <div className="rounded-full overflow-hidden bg-black/60 border border-white/10 w-full h-full">
                 <img
                   src="/profile.jpg"
-                  alt="Paramveer Marwah portrait"
+                  alt="Paramvir Marwah portrait"
                   className="w-full h-full object-cover object-[18%_35%] grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
