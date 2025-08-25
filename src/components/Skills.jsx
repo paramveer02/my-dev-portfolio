@@ -114,15 +114,17 @@ export default function Skills() {
             />
 
             {/* Title / icon */}
-            <header className="flex items-center gap-4 mb-3">
+            <header className="flex items-center gap-4 mb-7">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_6px_24px_rgba(0,0,0,.35)]">
-                <Icon className="h-6 w-6 text-blue-400" />
+                <Icon className="h-7 w-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-medium text-white">{title}</h3>
+              <h3 className="text-[clamp(1.25rem,1.7vw,1.6rem)] font-semibold text-white tracking-tight">
+                {title}
+              </h3>
             </header>
 
             {/* One-line personal blurb */}
-            <p className="text-gray-400 text-sm mb-5">{blurb}</p>
+            <p className="text-white-400 text-sm mb-9">{blurb}</p>
 
             {/* Chips */}
             <ul className="flex flex-wrap gap-3">
