@@ -50,7 +50,7 @@ export default function Footer({ scrollToSection }) {
                 PM
               </span>
               <div className="text-white/90 text-lg font-medium">
-                Paramveer Marwah
+                Paramvir Marwah
               </div>
             </div>
             <p className="text-gray-400 text-sm max-w-sm">
@@ -86,7 +86,7 @@ export default function Footer({ scrollToSection }) {
                   key={item.id}
                   type="button"
                   onClick={() => goTo(item.id)}
-                  className="group inline-flex items-center gap-1.5 text-gray-300 hover:text-white text-sm"
+                  className="group inline-flex items-center gap-1.5 text-gray-300 hover:text-white text-sm hover:cursor-pointer"
                 >
                   <ArrowUpRight
                     className="w-3.5 h-3.5 -translate-y-px opacity-70 group-hover:opacity-100"
@@ -136,7 +136,7 @@ export default function Footer({ scrollToSection }) {
           <button
             type="button"
             onClick={() => goTo("hero")}
-            className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10"
+            className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 cursor-pointer"
           >
             <ArrowUp className="w-4 h-4" /> Top
           </button>
