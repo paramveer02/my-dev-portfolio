@@ -21,7 +21,7 @@ export default function HireContact() {
   const [copied, setCopied] = useState(false);
 
   const email = "paramvir.marwah@gmail.com";
-  const resumeUrl = "/Paramveer_Marwah_Resume.pdf";
+  const resumeUrl = "/docs/Paramvir_Resume_JavaScript_Fullstack.pdf";
 
   const degreesListUrl = "/docs/degrees-2025.pdf";
   // const degreesZipUrl = "/docs/degrees-2025.pdf.zip";
