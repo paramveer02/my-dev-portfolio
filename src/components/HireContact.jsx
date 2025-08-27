@@ -112,7 +112,7 @@ export default function HireContact() {
               </button>
             </div>
             <a
-              href={`mailto:${email}?subject=Full-time%20opportunity%20(Backend%2FFull-Stack)&body=Hi%20Paramveer%2C%0A%0AWe%27d%20like%20to%20connect%20about%20a%20full-time%20role.%20Here%27s%20some%20context%3A%0A•%20Team%2FProduct%3A%20%0A•%20Role%2FLevel%3A%20%0A•%20Tech%20Stack%3A%20%0A•%20Location%2FRemote%3A%20%0A•%20JD%20link%3A%20%0A%0AThanks!`}
+              href={`mailto:${email}`}
               className="mt-3 inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
             >
               <Send className="w-4 h-4" />
