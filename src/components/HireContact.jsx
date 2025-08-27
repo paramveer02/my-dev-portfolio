@@ -24,13 +24,9 @@ export default function HireContact() {
   const resumeUrl = "/docs/Paramvir_Resume_JavaScript_Fullstack.pdf";
 
   const degreesListUrl = "/docs/degrees-2025.pdf";
-  // const degreesZipUrl = "/docs/degrees-2025.pdf.zip";
   const certificatesListUrl = "/docs/certificates-2025.pdf";
-  // const certificatesZipUrl = "/docs/certificates-2025.pdf.zip";
   const lettersListUrl = "/docs/Recommendation-2025.pdf";
-  const completeApplicationUrl =
-    "/downloads/Paramveer_Marwah_Complete_Application.pdf";
-  // const lettersZipUrl = "/docs/Recommendation-2025.pdf.zip";
+  const completeApplicationUrl = "/docs/Application-2025.pdf";
   // ————————
 
   function handleCopy() {
@@ -262,8 +258,8 @@ export default function HireContact() {
                   </div>
                   <ul className="list-disc pl-4 space-y-1">
                     <li>Résumé (PDF)</li>
+                    <li>Degrees (PDF)</li>
                     <li>Certificates (PDF)</li>
-                    <li>Degree (PDF)</li>
                     <li>Recommendation letters (PDF)</li>
                   </ul>
                   <div className="mt-2 text-[11px] text-gray-400">
