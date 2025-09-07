@@ -17,37 +17,12 @@ const DEFAULT_MAX_FRAMES = 4;
 function HoverCarousel({
   images = [],
   title,
-  secsPerImage = DEFAULT_SECS_PER_IMAGE,
-  maxFrames = DEFAULT_MAX_FRAMES,
-  autoplay = false,
   className = "",
   fit = "contain",
   position = "center",
 }) {
-  const frames = useMemo(
-    () => images.filter(Boolean).slice(0, maxFrames),
-    [images, maxFrames]
-  );
+  const frames = useMemo(() => images.filter(Boolean), [images]);
   const [idx, setIdx] = useState(0);
-  const [playing, setPlaying] = useState(autoplay);
-  const tRef = useRef(null);
-
-  const start = () => frames.length > 1 && setPlaying(true);
-  const stop = () => setPlaying(false);
-
-  useEffect(() => {
-    if (!playing || frames.length < 2) return;
-    tRef.current = setInterval(
-      () => setIdx((i) => (i + 1) % frames.length),
-      secsPerImage * 1000
-    );
-    return () => clearInterval(tRef.current);
-  }, [playing, frames.length, secsPerImage]);
-
-  useEffect(() => {
-    setIdx(0);
-    setPlaying(autoplay);
-  }, [frames.length, autoplay]);
 
   const prev = () =>
     frames.length > 1 && setIdx((i) => (i - 1 + frames.length) % frames.length);
@@ -70,10 +45,6 @@ function HoverCarousel({
 
   return (
     <div
-      onMouseEnter={start}
-      onMouseLeave={stop}
-      onTouchStart={start}
-      onTouchEnd={stop}
       className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_10px_30px_rgba(0,0,0,0.35)] ${className}`}
     >
       <div className="relative w-full aspect-[16/9] bg-black/30 rounded-2xl overflow-hidden">
@@ -115,10 +86,10 @@ function HoverCarousel({
                 type="button"
                 onClick={() => setIdx(j)}
                 className={[
-                  "h-1.5 rounded-full transition-all",
+                  "h-1.5 rounded-full transition-all cursor-pointer",
                   j === idx
                     ? "w-6 bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.08)]"
-                    : "w-1.5 bg-white/45 group-hover:bg-white/70",
+                    : "w-1.5 bg-white/45 hover:bg-white/70",
                 ].join(" ")}
                 aria-label={`Show slide ${j + 1}`}
               />
@@ -127,13 +98,13 @@ function HoverCarousel({
         </div>
       )}
 
-      {/* Chevrons (on hover) */}
+      {/* Chevrons (always visible on hover) */}
       {frames.length > 1 && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
           <button
             type="button"
             onClick={prev}
-            className="pointer-events-auto inline-flex items-center justify-center size-8 rounded-full bg-black/35 border border-white/10 hover:bg-black/55 text-white"
+            className="pointer-events-auto inline-flex items-center justify-center size-8 rounded-full bg-black/35 border border-white/10 hover:bg-black/55 text-white cursor-pointer"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -141,7 +112,7 @@ function HoverCarousel({
           <button
             type="button"
             onClick={next}
-            className="pointer-events-auto inline-flex items-center justify-center size-8 rounded-full bg-black/35 border border-white/10 hover:bg-black/55 text-white"
+            className="pointer-events-auto inline-flex items-center justify-center size-8 rounded-full bg-black/35 border border-white/10 hover:bg-black/55 text-white cursor-pointer"
             aria-label="Next slide"
           >
             <ChevronRight className="w-4 h-4" />
@@ -328,9 +299,9 @@ export default function ProjectShowcase({ project, index }) {
                 rel="noreferrer"
                 className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg
                            border border-white/15 bg-white/5 text-white
-                           hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
+                           hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
               >
-                <Github className="w-4 h-4 opacity-80 group-hover:opacity-100" />
+                <Github className="w-4 h-4 opacity-80 group-hover:opacity-100 cursor-pointer" />
                 Code
               </a>
             )}
@@ -345,7 +316,7 @@ export default function ProjectShowcase({ project, index }) {
                   type="button"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
                              border border-white/15 bg-white/5 text-white
-                             hover:bg-white/10 transition-all duration-300"
+                             hover:bg-white/10 transition-all duration-300 cursor-pointer"
                   aria-haspopup="menu"
                   aria-expanded={menuOpen}
                 >
