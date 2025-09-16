@@ -1,39 +1,146 @@
 // components/HireContact.jsx
 import { motion } from "framer-motion";
 import {
-  Mail,
-  Github,
-  Linkedin,
-  Send,
-  Copy,
-  Check,
-  FileText,
-  Briefcase,
-  MapPin,
+  Download,
+  ExternalLink,
   Award,
   GraduationCap,
-  ExternalLink,
-  Download,
+  FileText,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/* ---------------- Reusable Gallery Card ---------------- */
+function GalleryCard({
+  icon: Icon,
+  title,
+  subtitle,
+  images = [],
+  actions = [], // [{label, href, download?:bool}]
+}) {
+  const [hovered, setHovered] = useState(false);
+  const [idx, setIdx] = useState(0);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (!hovered || images.length < 2) return;
+    timerRef.current = setInterval(() => {
+      setIdx((i) => (i + 1) % images.length);
+    }, 1800);
+    return () => clearInterval(timerRef.current);
+  }, [hovered, images.length]);
+
+  return (
+    <motion.div
+      whileHover={{ y: -4, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 220, damping: 18 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative surface p-5 surface-hover overflow-hidden"
+    >
+      {/* Top border glow */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 -top-px h-px rounded-t-2xl bg-gradient-to-r from-blue-400/35 via-cyan-400/25 to-blue-400/35"
+      />
+
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+          <Icon className="w-5 h-5 text-blue-400" />
+        </div>
+        <div>
+          <h3 className="text-white text-lg font-medium">{title}</h3>
+          {subtitle && (
+            <p className="text-[13px] text-gray-300/80 mt-0.5">{subtitle}</p>
+          )}
+        </div>
+      </div>
+
+      {/* Image stack / carousel */}
+      <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 bg-white/5">
+        {/* When hovered, we crossfade through images */}
+        {images.map((src, i) => (
+          <motion.img
+            key={src}
+            src={src}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            initial={{ opacity: i === 0 ? 1 : 0 }}
+            animate={{
+              opacity: hovered ? (i === idx ? 1 : 0) : i === 0 ? 1 : 0,
+            }}
+            transition={{ duration: 0.45 }}
+            draggable={false}
+          />
+        ))}
+
+        {/* subtle magnify on hover */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ scale: hovered ? 1.06 : 1 }}
+          transition={{ duration: 0.35 }}
+        />
+        {/* gradient scrim for button readability */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Actions */}
+      <div className="mt-4 flex flex-wrap gap-2">
+        {actions.map((a) => (
+          <a
+            key={a.label}
+            href={a.href}
+            {...(a.newTab ? { target: "_blank", rel: "noreferrer" } : {})}
+            {...(a.download ? { download: true } : {})}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-white/15 bg-white/5 text-gray-100 text-[14px] hover:bg-white/10 transition"
+          >
+            {a.icon === "download" ? (
+              <Download className="w-4 h-4" />
+            ) : (
+              <ExternalLink className="w-4 h-4" />
+            )}
+            {a.label}
+          </a>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ---------------- Main Section ---------------- */
 export default function HireContact() {
-  const [copied, setCopied] = useState(false);
-
-  const email = "paramvir.marwah@gmail.com";
+  // PDF links (keep your existing names/paths)
   const resumeUrl = "/docs/Paramvir_Resume_JavaScript_Fullstack.pdf";
-
+  const resumeUrlDe = "/docs/DE_Paramvir_Resume.pdf";
   const degreesListUrl = "/docs/degrees-2025.pdf";
   const certificatesListUrl = "/docs/certificates-2025.pdf";
   const lettersListUrl = "/docs/Recommendation-2025.pdf";
   const completeApplicationUrl = "/docs/Application-2025.pdf";
-  // ————————
 
-  function handleCopy() {
-    navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1200);
-  }
+  // Images under: /public/hire-images/**
+
+  const certsImages = [
+    "/hire-images/certificatesAndRecommendations/wbs.png",
+    "/hire-images/certificatesAndRecommendations/udemy-node.png",
+    "/hire-images/certificatesAndRecommendations/udemy-javascript.png",
+    "/hire-images/certificatesAndRecommendations/carus-digital.png",
+    "/hire-images/certificatesAndRecommendations/wirbauen.png",
+    "/hire-images/certificatesAndRecommendations/dmns.png",
+    "/hire-images/certificatesAndRecommendations/python.png",
+    "/hire-images/certificatesAndRecommendations/testdaf.png",
+  ];
+
+  const degreesImages = [
+    "/hire-images/degrees/Masters.png",
+    "/hire-images/degrees/Bachelors.png",
+  ];
+
+  const cvImages = [
+    "/hire-images/resume/cv-en-1.png",
+    "/hire-images/resume/cv-en-2.png",
+    "/hire-images/resume/cv-de-1.png",
+    "/hire-images/resume/cv-de-2.png",
+  ];
 
   return (
     <section id="hire" className="section-container">
@@ -51,12 +158,13 @@ export default function HireContact() {
           </h2>
           <div className="w-24 h-px bg-blue-600 mx-auto" />
           <p className="mt-6 text-gray-300/90 max-w-2xl mx-auto">
-            I’m looking to join a team where I can ship reliable features, keep
-            the codebase clean and tie my work to clear business goals.
+            Recently graduated from a full-time coding bootcamp. I focus on
+            shipping reliable features, keeping the codebase clean, and tying
+            work to clear business outcomes.
           </p>
         </div>
 
-        {/* Availability ribbon */}
+        {/* Availability ribbon (kept) */}
         <div className="relative mx-auto max-w-3xl mb-8">
           <div className="absolute inset-0 -z-10 rounded-2xl blur-2xl bg-gradient-to-r from-blue-500/15 via-cyan-400/12 to-blue-500/15" />
           <div className="relative rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-sm px-3 py-2 md:px-4 md:py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
@@ -69,11 +177,9 @@ export default function HireContact() {
                 Actively seeking · Full-time
               </span>
               <span className="chip chip--accent inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
-                <Briefcase className="w-4 h-4 opacity-80" />
                 Backend · Full-Stack
               </span>
               <span className="chip chip--accent inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/12 bg-white/5 text-gray-200 text-sm md:text-[0.95rem]">
-                <MapPin className="w-4 h-4 opacity-80" />
                 Germany (CET) · Remote-friendly
               </span>
             </div>
@@ -81,256 +187,102 @@ export default function HireContact() {
           </div>
         </div>
 
-        {/* Cards */}
+        {/* 3 Gallery Cards */}
         <div className="grid gap-6 md:grid-cols-3">
-          {/* Email — compact */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            className="surface p-5 surface-hover"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                <Mail className="w-5 h-5 text-blue-400" />
-              </div>
-              <h3 className="text-white text-lg font-medium">Email</h3>
-            </div>
-            <p className="text-gray-300/90 mb-4 text-[15px]">
-              Best way to reach me. I usually reply within a day.
-            </p>
-            <div className="flex items-center justify-between gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
-              <span className="text-gray-200 truncate">{email}</span>
-              <button
-                onClick={handleCopy}
-                className="inline-flex items-center gap-2 rounded-md px-2 py-1 bg-white/5 border border-white/10 hover:bg-white/10 transition text-sm"
-              >
-                {copied ? (
-                  <Check className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Copy className="w-4 h-4" />
-                )}
-                {copied ? "Copied" : "Copy"}
-              </button>
-            </div>
-            <a
-              href={`mailto:${email}`}
-              className="mt-3 inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
-            >
-              <Send className="w-4 h-4" />
-              Write an email
-            </a>
-          </motion.div>
+          <GalleryCard
+            icon={Award}
+            title="Certifications & Recommendations"
+            subtitle="Selected highlights from 2023–2025"
+            images={certsImages}
+            actions={[
+              {
+                label: "View Certificates (PDF)",
+                href: certificatesListUrl,
+                newTab: true,
+              },
+              {
+                label: "View Recommendation Letters",
+                href: lettersListUrl,
+                newTab: true,
+              },
+              {
+                label: "Download Certificates",
+                href: certificatesListUrl,
+                download: true,
+                icon: "download",
+              },
+            ]}
+          />
 
-          {/* Credentials & References — no hover, inline actions (bulletproof) */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            className="surface p-5 surface-hover"
-          >
-            <div
-              aria-hidden
-              className="absolute inset-x-0 -top-px h-px rounded-t-2xl bg-gradient-to-r from-blue-400/35 via-cyan-400/25 to-blue-400/35"
-            />
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                <Award className="w-5 h-5 text-blue-400" />
-              </div>
-              <h3 className="text-white text-lg font-medium">
-                Credentials & References
-              </h3>
-            </div>
+          <GalleryCard
+            icon={GraduationCap}
+            title="Degrees"
+            subtitle="Masters & Bachelors"
+            images={degreesImages}
+            actions={[
+              {
+                label: "View Degrees (PDF)",
+                href: degreesListUrl,
+                newTab: true,
+              },
+              {
+                label: "Download Degrees",
+                href: degreesListUrl,
+                download: true,
+                icon: "download",
+              },
+            ]}
+          />
 
-            <div className="grid gap-3">
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
-                <span className="inline-flex items-center gap-2 text-white">
-                  <Award className="w-4.5 h-4.5 opacity-90" />
-                  Certificates
-                </span>
-                <span className="flex items-center gap-2">
-                  <a
-                    href={certificatesListUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View
-                  </a>
-                  {/* {certificatesZipUrl && (
-                    <a
-                      href={certificatesZipUrl}
-                      download
-                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                    >
-                      <Archive className="w-3.5 h-3.5" />
-                      ZIP
-                    </a>
-                  )} */}
-                </span>
-              </div>
-
-              {/* Row: Degrees */}
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
-                <span className="inline-flex items-center gap-2 text-white">
-                  <GraduationCap className="w-4.5 h-4.5 opacity-90" />
-                  Degrees
-                </span>
-                <span className="flex items-center gap-2">
-                  <a
-                    href={degreesListUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View
-                  </a>
-                  {/* {degreesZipUrl && (
-                    <a
-                      href={degreesZipUrl}
-                      download
-                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                    >
-                      <Archive className="w-3.5 h-3.5" />
-                      ZIP
-                    </a>
-                  )} */}
-                </span>
-              </div>
-
-              {/* Row: Recommendation letters */}
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/12 bg-white/[0.06] px-3.5 py-2.5">
-                <span className="inline-flex items-center gap-2 text-white">
-                  <FileText className="w-4.5 h-4.5 opacity-90" />
-                  Recommendation letters
-                </span>
-                <span className="flex items-center gap-2">
-                  <a
-                    href={lettersListUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View
-                  </a>
-                  {/* {lettersZipUrl && (
-                    <a
-                      href={lettersZipUrl}
-                      download
-                      className="inline-flex items-center gap-1.5 rounded-md border border-white/12 bg-white/5 px-2.5 py-1.5 text-sm text-gray-200 hover:bg-white/10 transition"
-                    >
-                      <Archive className="w-3.5 h-3.5" />
-                      ZIP
-                    </a>
-                  )} */}
-                </span>
-              </div>
-            </div>
-
-            {/* Download complete application */}
-            <div className="mt-3 flex justify-center">
-              <div className="relative inline-block group">
-                <a
-                  href={completeApplicationUrl}
-                  download
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg
-                 border border-white/15 bg-white/5 text-gray-100 text-sm
-                 hover:bg-white/10 transition-all duration-200 hover:-translate-y-0.5
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
-                  aria-describedby="dl-tooltip"
-                >
-                  <Download className="w-4 h-4 opacity-90" />
-                  Download complete application
-                </a>
-
-                {/* Tooltip */}
-                <div
-                  id="dl-tooltip"
-                  role="tooltip"
-                  className="pointer-events-none absolute left-0 top-[calc(100%+8px)] z-20 w-72
-                 rounded-xl border border-white/10 bg-black/80 backdrop-blur-md
-                 text-gray-200 text-xs p-3 opacity-0 translate-y-1
-                 transition-all duration-200
-                 group-hover:opacity-100 group-hover:translate-y-0
-                 group-focus-within:opacity-100 group-focus-within:translate-y-0"
-                >
-                  <div className="font-semibold text-white mb-1.5">
-                    Will download:
-                  </div>
-                  <ul className="list-disc pl-4 space-y-1">
-                    <li>Résumé (PDF)</li>
-                    <li>Degrees (PDF)</li>
-                    <li>Certificates (PDF)</li>
-                    <li>Recommendation letters (PDF)</li>
-                  </ul>
-                  <div className="mt-2 text-[11px] text-gray-400">
-                    Packaged as a single merged PDF.
-                  </div>
-
-                  {/* little caret */}
-                  <span
-                    aria-hidden
-                    className="absolute -top-2 left-4 inline-block size-3 rotate-45
-                   bg-black/80 border-l border-t border-white/10"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Links — compact */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            className="surface p-5 surface-hover"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                <Linkedin className="w-5 h-5 text-blue-400" />
-              </div>
-              <h3 className="text-white text-lg font-medium">Links</h3>
-            </div>
-            <p className="text-gray-300/90 mb-4 text-[15px]">
-              Quick references: code, profile and resume.
-            </p>
-            <div className="flex flex-wrap items-center gap-2.5">
-              <a
-                href="https://github.com/paramveer02"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
-              >
-                <Github className="w-4 h-4" />
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/paramveer-marwah/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
-              >
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </a>
-              <a
-                href={resumeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/10 transition text-[15px]"
-              >
-                <FileText className="w-4 h-4" />
-                Resume
-              </a>
-            </div>
-          </motion.div>
+          <GalleryCard
+            icon={FileText}
+            title="CV / Résumé"
+            subtitle="English / Deutsch"
+            images={cvImages}
+            actions={[
+              {
+                label: "View CV (English)",
+                href: resumeUrl,
+                newTab: true,
+              },
+              {
+                label: "Download EN",
+                href: "/docs/Paramvir_Resume_JavaScript_Fullstack.pdf",
+                download: true,
+                icon: "download",
+              },
+              {
+                label: "View CV (Deutsch)",
+                href: resumeUrlDe,
+                newTab: true,
+              },
+              {
+                label: "Download DE",
+                href: "/docs/DE_Paramvir_Resume.pdf",
+                download: true,
+                icon: "download",
+              },
+            ]}
+          />
         </div>
 
-        {/* Footer line */}
-        {/* <div className="mt-10 text-center text-gray-400 text-sm">
-          Thanks for considering my profile. If the role aligns, I’d be glad to
-          contribute and keep learning.
-        </div> */}
+        {/* Complete Application download */}
+        <div className="mt-6 flex justify-center">
+          <a
+            href={completeApplicationUrl}
+            download
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg
+            border border-white/15 bg-white/5 text-gray-100 text-[15px]
+            hover:bg-white/10 transition-all duration-200 hover:-translate-y-0.5
+            focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+          >
+            <Download className="w-4 h-4" />
+            Download Complete Application (merged PDF)
+          </a>
+        </div>
       </motion.div>
 
-      {/* Subtle sheen animation */}
+      {/* Sheen animation */}
       <style>{`
         @keyframes availability-sheen-move {
           from { transform: translateX(-120%); }
