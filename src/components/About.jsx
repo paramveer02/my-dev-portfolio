@@ -37,47 +37,64 @@ export default function About() {
             <p className="text-justify">
               I’m{" "}
               <span className="text-white/90 font-medium">Paramvir Marwah</span>
-              , a backend-leaning full-stack developer who turns messy
-              requirements into clear APIs and small, safe releases. My recent
+              , a backend-leaning full-stack developer who enjoys turning
+              complex ideas into clear APIs and reliable releases. My current
               focus is the{" "}
               <span className="text-white/90 font-medium">MERN</span> stack,
-              grounded by prior work in{" "}
+              built on earlier experience with{" "}
               <span className="text-white/90 font-medium">Python/Django</span>{" "}
               and <span className="text-white/90 font-medium">Java/Spring</span>
-              . In production settings, I’ve shipped a{" "}
+              . In production, I’ve delivered a{" "}
               <span className="text-white/90 font-medium">
-                carbon-emissions module{" "}
-              </span>
-              that made calculations faster and more precise, and an{" "}
+                carbon-emissions module
+              </span>{" "}
+              that sped up calculations and an{" "}
               <span className="text-white/90 font-medium">
-                HR compensation (gross↔net) feature{" "}
-              </span>
-              that simplified payroll steps and reduced manual work. I care
-              about readable, DRY code, focused tests where they matter, and
-              brief docs that let teams move quicker.
+                HR payroll feature
+              </span>{" "}
+              that simplified gross↔net handling. I care about clean, DRY code,
+              pragmatic tests, and docs that help teams move faster.
             </p>
 
             <p className="text-justify">
-              I work best in teams—pairing on tricky bits, keeping reviews calm
-              and constructive, and maintaining tidy tickets so progress stays
-              steady. In my bootcamp capstone project, I worked across the full
-              stack, owned critical features, and helped the team keep
-              high-quality coding standards — experience that I now bring into
-              my professional journey. I stay curious about new tools and
-              practical AI, and adopt them when they clearly lift quality or
-              speed. Off the keyboard I reset with hiking, football, travel, and
-              chess.
+              I thrive in collaborative teams—pairing on tricky problems,
+              keeping reviews constructive, and maintaining tidy tickets so
+              progress stays steady. Having{" "}
+              <span className="text-white/90 font-medium">
+                graduated from my coding bootcamp
+              </span>
+              , I gained hands-on full-stack experience through a{" "}
+              <span className="text-white/90 font-medium">
+                capstone project
+              </span>{" "}
+              where I owned critical features and upheld code quality standards.
+              This practical training, combined with my professional background,
+              means I’m{" "}
+              <span className="text-white/90 font-medium">
+                ready to contribute to production-level teams immediately
+              </span>
+              . I stay curious about new tools and practical AI, adopting them
+              when they clearly improve quality or speed. Off the keyboard, I
+              reset with hiking, football, travel, and chess.
             </p>
           </div>
 
           {/* Compact stats — smaller cards, 4-up */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 max-w-[48rem] md:max-w-[52rem]">
-            <StatCard icon={Layers} primary="5+" secondary="Projects" />
-            <StatCard icon={Award} primary="2+" secondary="Years Experience" />
+            <StatCard
+              icon={Layers}
+              primary="5+"
+              secondary="Production-Grade Full-Stack Applications"
+            />
+            <StatCard
+              icon={Award}
+              primary="2+"
+              secondary="Years in Professional Software Development"
+            />
             <StatCard
               icon={Briefcase}
               primary="MERN & Django"
-              secondary="Current focus"
+              secondary="Focused on Modern Web Development"
               isTextPrimary
             />
             <StatCard
