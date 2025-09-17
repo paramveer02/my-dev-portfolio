@@ -60,11 +60,13 @@ export default function About() {
             <p className="text-justify">
               I work best in teams—pairing on tricky bits, keeping reviews calm
               and constructive, and maintaining tidy tickets so progress stays
-              steady. In my current bootcamp capstone I collaborate end-to-end,
-              own features, and help keep standards consistent. I stay curious
-              about new tools and practical AI, and adopt them when they clearly
-              lift quality or speed. Off the keyboard I reset with hiking,
-              football, travel, and chess.
+              steady. In my bootcamp capstone project, I worked across the full
+              stack, owned critical features, and helped the team keep
+              high-quality coding standards — experience that I now bring into
+              my professional journey. I stay curious about new tools and
+              practical AI, and adopt them when they clearly lift quality or
+              speed. Off the keyboard I reset with hiking, football, travel, and
+              chess.
             </p>
           </div>
 
