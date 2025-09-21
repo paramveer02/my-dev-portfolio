@@ -122,6 +122,7 @@ export default function HireContact() {
   const certsImages = [
     "/hire-images/certificatesAndRecommendations/wbs.png",
     "/hire-images/certificatesAndRecommendations/udemy-node.png",
+    "/hire-images/certificatesAndRecommendations/udemy-ai.jpg",
     "/hire-images/certificatesAndRecommendations/udemy-javascript.png",
     "/hire-images/certificatesAndRecommendations/carus-digital.png",
     "/hire-images/certificatesAndRecommendations/wirbauen.png",
